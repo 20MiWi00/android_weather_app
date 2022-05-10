@@ -1,6 +1,8 @@
 package com.example.z2.forecastFdata;
 
-public class MinutelyItem{
+import java.io.Serializable;
+
+public class MinutelyItem implements Serializable {
 	private int dt;
 	private int precipitation;
 

@@ -1,8 +1,9 @@
 package com.example.z2.forecastFdata;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ForecastRepsonse {
+public class ForecastRepsonse implements Serializable {
 	private String timezone;
 	private int timezoneOffset;
 	private List<DailyItem> daily;

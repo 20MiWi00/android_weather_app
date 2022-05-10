@@ -1,6 +1,8 @@
 package com.example.z2.forecastFdata;
 
-public class WeatherItem{
+import java.io.Serializable;
+
+public class WeatherItem implements Serializable {
 	private String icon;
 	private String description;
 	private String main;

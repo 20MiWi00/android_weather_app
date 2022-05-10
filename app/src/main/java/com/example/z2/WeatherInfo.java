@@ -2,17 +2,22 @@ package com.example.z2;
 
 import com.example.z2.forecastFdata.DailyItem;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class WeatherInfo {
+public class WeatherInfo implements Serializable {
 
     private  String city;
     private  Double lon;
     private  Double lat;
+    private  Integer sunset;
+    private  Integer sunrise;
 
     //Pierwszy fragment
     private  Double temp;
+    private  String type;
     private  String description;
+    private  String typeOfDescription;
 
     //Drugi fragment
     private  Integer pressure;
@@ -20,6 +25,10 @@ public class WeatherInfo {
 
     //Trzeci fragment
     private List<DailyItem> dailyItemList;
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 
     public String getCity() {
         return city;
@@ -80,5 +89,17 @@ public class WeatherInfo {
     public void setDailyItemList(List<DailyItem> dailyItemList) { this.dailyItemList = dailyItemList; }
 
     public List<DailyItem> getDailyItemList() { return dailyItemList; }
+
+    public String getTypeOfDescription() { return typeOfDescription; }
+
+    public void setTypeOfDescription(String typeOfDescription) { this.typeOfDescription = typeOfDescription; }
+
+    public Integer getSunset() { return sunset; }
+
+    public void setSunset(Integer sunset) { this.sunset = sunset; }
+
+    public Integer getSunrise() { return sunrise; }
+
+    public void setSunrise(Integer sunrise) { this.sunrise = sunrise; }
 
 }

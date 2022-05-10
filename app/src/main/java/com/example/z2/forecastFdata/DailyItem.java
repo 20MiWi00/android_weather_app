@@ -1,8 +1,9 @@
 package com.example.z2.forecastFdata;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DailyItem{
+public class DailyItem implements Serializable {
 	private int moonset;
 	private double rain;
 	private int sunrise;

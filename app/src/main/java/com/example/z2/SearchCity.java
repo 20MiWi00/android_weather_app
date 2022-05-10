@@ -3,11 +3,16 @@ package com.example.z2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.z2.data.GeoResponse;
 import com.example.z2.data.ResponseItem;
@@ -17,6 +22,7 @@ import com.example.z2.forecastFdata.DailyItem;
 import com.example.z2.forecastFdata.ForecastRepsonse;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,16 +37,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SearchCity extends AppCompatActivity {
 
     private String city;
+    private String units = "metric";
     private double lon;
     private double lat;
     public static WeatherInfo weatherInfo = new WeatherInfo();
 
     private Button searchButton;
-    public static boolean units = false;
+    private Switch temperatureSwitch;
+    private boolean isUsed = true;
 
     private static Retrofit retrofit;
     private static String API_id = "8e71e30e98cdb9a9e4f9fb51da114938";
     private static String baseURL = "https://api.openweathermap.org";
+    private int LAUNCH_SECOND_ACTIVITY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,18 @@ public class SearchCity extends AppCompatActivity {
                 getData();
             }
         });
+        temperatureSwitch = findViewById(R.id.temperatureSwitch);
+        temperatureSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(temperatureSwitch.isChecked()){
+                    units = "imperial";
+                }
+                else{
+                    units = "metirc";
+                }
+            }
+        });
     }
 
     private void getData(){
@@ -70,13 +91,15 @@ public class SearchCity extends AppCompatActivity {
                 lat = response.body().get(0).getLat();
                 weatherInfo.setLon(lon);
                 weatherInfo.setLat(lat);
+                weatherInfo.setType(units);
                 weatherInfo.setCity(response.body().get(0).getName());
                 getWeatherData();
             }
 
             @Override
             public void onFailure(Call<List<ResponseItem>> call, Throwable t) {
-                System.out.println("Błąd");
+                Toast.makeText(SearchCity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -85,22 +108,24 @@ public class SearchCity extends AppCompatActivity {
         DailyForecastService service = retrofit.create(DailyForecastService.class);
         if(lat != 0.0 && lon != 0.0)
         {
-            Call<WeatherResponse> call = service.getWeatherInfo(lat,lon,"metric",API_id);
+            Call<WeatherResponse> call = service.getWeatherInfo(lat,lon,units,API_id);
             call.enqueue(new Callback<WeatherResponse>() {
                 @Override
                 public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                     List<WeatherItem> weatherItem = response.body().getWeather();
-                    weatherInfo.setDescription(weatherItem.get(0).getDescription());
+                    weatherInfo.setDescription(weatherItem.get(0).getMain());
+                    weatherInfo.setTypeOfDescription(weatherItem.get(0).getDescription());
                     weatherInfo.setTemp(response.body().getMain().getTemp());
                     weatherInfo.setPressure(response.body().getMain().getPressure());
                     weatherInfo.setWindSpeed(response.body().getWind().getSpeed());
+                    weatherInfo.setSunset(response.body().getSys().getSunset());
+                    weatherInfo.setSunrise(response.body().getSys().getSunrise());
                     getForecastData();
                 }
 
                 @Override
                 public void onFailure(Call<WeatherResponse> call, Throwable t) {
-                    t.printStackTrace();
-                    System.out.println("Błąd");
+                    Toast.makeText(SearchCity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -108,18 +133,21 @@ public class SearchCity extends AppCompatActivity {
 
     private void getForecastData(){
         FutureForecastService service = retrofit.create(FutureForecastService.class);
-        Call<ForecastRepsonse> call = service.getForecastInfo(lat,lon,"minutely,hourly,alerts,current","metric","pl",API_id);
+        Call<ForecastRepsonse> call = service.getForecastInfo(lat,lon,"minutely,hourly,alerts,current",units,"pl",API_id);
         call.enqueue(new Callback<ForecastRepsonse>() {
             @Override
             public void onResponse(Call<ForecastRepsonse> call, Response<ForecastRepsonse> response) {
                 List<DailyItem> dailyList = response.body().getDaily();
                 weatherInfo.setDailyItemList(dailyList);
+                Intent mainIntent = new Intent();
+                mainIntent.putExtra("WeatherInfoClass",weatherInfo);
+                setResult(Activity.RESULT_OK,mainIntent);
+                finish();
             }
 
             @Override
             public void onFailure(Call<ForecastRepsonse> call, Throwable t) {
-                t.printStackTrace();
-                System.out.println("Błąd");
+                Toast.makeText(SearchCity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
             }
         });
 

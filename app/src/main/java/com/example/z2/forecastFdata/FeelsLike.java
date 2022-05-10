@@ -1,6 +1,8 @@
 package com.example.z2.forecastFdata;
 
-public class FeelsLike{
+import java.io.Serializable;
+
+public class FeelsLike implements Serializable {
 	private double eve;
 	private double night;
 	private double day;

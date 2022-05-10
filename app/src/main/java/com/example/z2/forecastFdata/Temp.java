@@ -1,6 +1,8 @@
 package com.example.z2.forecastFdata;
 
-public class Temp{
+import java.io.Serializable;
+
+public class Temp implements Serializable {
 	private double min;
 	private double max;
 	private double eve;

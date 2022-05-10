@@ -20,6 +20,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/GLH02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInput"
         android:layout_width="250dp"
@@ -44,5 +51,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textInput"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="384dp"
+        android:layout_height="20dp"
+        android:text="Jednostki temperatury"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/GLH01" />
+
+    <Switch
+        android:id="@+id/temperatureSwitch"
+        android:layout_width="49dp"
+        android:layout_height="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/GLH02"
+        app:layout_constraintEnd_toStartOf="@+id/GLV065"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="°F"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/GLH02"
+        app:layout_constraintEnd_toStartOf="@+id/GLV065"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toEndOf="@+id/temperatureSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="23dp"
+        android:layout_height="20dp"
+        android:text="°C"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/GLH02"
+        app:layout_constraintEnd_toStartOf="@+id/temperatureSwitch"
+        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.515" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
