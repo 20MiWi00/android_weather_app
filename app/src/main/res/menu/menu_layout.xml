@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editCityItem"
+        android:title="Edit city"
+        android:icon="@drawable/half_clear_moon"/>
+
+    <item
+        android:id="@+id/refreshWeatherItem"
+        android:title="Refresh weather"/>
+    <item
+        android:id="@+id/addToFavItem"
+        android:title="Add to favorites"/>
+
+</menu>

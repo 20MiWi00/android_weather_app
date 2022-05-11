@@ -5,9 +5,14 @@
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.23125" />
         <entry key="../../../../../layout/custom_preview.xml" value="0.1685185185185185" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/activity_search_city.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_today_forecast_layout.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_search_city.xml" value="1.1176809254161446" />
+        <entry key="app/src/main/res/layout/fragment_additional_info_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_future_forecast_layout.xml" value="0.20969202898550723" />
+        <entry key="app/src/main/res/layout/fragment_today_forecast_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/layout_favlistitem.xml" value="0.16335540838852097" />
+        <entry key="app/src/main/res/layout/layout_listitem.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/menu_layout.xml" value="0.22916666666666666" />
       </map>
     </option>
   </component>

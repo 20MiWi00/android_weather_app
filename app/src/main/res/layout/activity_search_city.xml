@@ -39,14 +39,14 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Podaj miasto" />
+            android:hint="Enter city" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="125dp"
         android:layout_height="60dp"
-        android:text="Szukaj"
+        android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/GLH01"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textInput"
@@ -56,7 +56,8 @@
         android:id="@+id/textView"
         android:layout_width="384dp"
         android:layout_height="20dp"
-        android:text="Jednostki temperatury"
+        android:text="Temperature Units"
+        android:textSize="16sp"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -66,14 +67,16 @@
 
     <Switch
         android:id="@+id/temperatureSwitch"
-        android:layout_width="49dp"
-        android:layout_height="34dp"
+        android:layout_width="58dp"
+        android:layout_height="41dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
         app:layout_constraintBottom_toTopOf="@+id/GLH02"
         app:layout_constraintEnd_toStartOf="@+id/GLV065"
-        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.583" />
 
     <TextView
         android:id="@+id/textView3"
@@ -83,7 +86,7 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/GLH02"
         app:layout_constraintEnd_toStartOf="@+id/GLV065"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/temperatureSwitch"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -95,9 +98,34 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/GLH02"
         app:layout_constraintEnd_toStartOf="@+id/temperatureSwitch"
-        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.515" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="384dp"
+        android:layout_height="20dp"
+        android:text="Favorite Cities "
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/GLH02" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerListWindow"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class WeatherInfo implements Serializable {
 
+    private  Long timeOfCreation;
     private  String city;
     private  Double lon;
     private  Double lat;
@@ -101,5 +102,10 @@ public class WeatherInfo implements Serializable {
     public Integer getSunrise() { return sunrise; }
 
     public void setSunrise(Integer sunrise) { this.sunrise = sunrise; }
+
+    public Long getTimeOfCreation() { return timeOfCreation; }
+
+    public void setTimeOfCreation(Long timeOfCreation) { this.timeOfCreation = timeOfCreation; }
+
 
 }

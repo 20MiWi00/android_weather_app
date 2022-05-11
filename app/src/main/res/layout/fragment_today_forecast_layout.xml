@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="26sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
 
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textColor="@color/black" />
     </LinearLayout>
 

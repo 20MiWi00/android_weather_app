@@ -11,18 +11,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/alertView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textColor="#D5A649"
+            android:textSize="22sp" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/firstFragmentView"
             android:name="com.example.z2.TodayForecastFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/search_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="+" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/secondFragmentView"
+            android:name="com.example.z2.AdditionalInfoFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/thirdFragmentView"
+            android:name="com.example.z2.FutureForecastFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
