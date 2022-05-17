@@ -90,7 +90,7 @@ public class RecyclerViewFavAdapter extends RecyclerView.Adapter<RecyclerViewFav
             os.writeObject(SearchCity.listOfCities);
             os.close();
         }catch(Exception e){
-            Toast.makeText(context,"Błąd zapisu pliku",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Saving data error",Toast.LENGTH_SHORT).show();
         }
     }
 }

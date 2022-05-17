@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private AdditionalInfoFragment secondFragment;
     private FutureForecastFragment thirdFragment;
     private TextView alertView;
+    private static boolean init_update = false;
 
     private final String filename = "weatherInfoClass";
     private final String listFilename = "listInfo";
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        load(MainActivity.this);
+        if(init_update == false)
+            load(MainActivity.this);
     }
 
     @Override
@@ -83,17 +85,20 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(searchCity,LAUNCH_SECOND_ACTIVITY);
                 }
                 else{
-                    Toast.makeText(MainActivity.this,"Brak dostępu do sieci",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"No internet connection",Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.addToFavItem:
-                if(!SearchCity.listOfCities.contains(weatherInfo.getCity())){
-                    SearchCity.listOfCities.add(weatherInfo.getCity());
-                    Toast.makeText(MainActivity.this,"Miasto " + weatherInfo.getCity() + " zostało dodane",Toast.LENGTH_SHORT).show();
-                    SaveList(this);
+                if(weatherInfo!=null){
+                    if(!SearchCity.listOfCities.contains(weatherInfo.getCity())) {
+                        SearchCity.listOfCities.add(weatherInfo.getCity());
+                        Toast.makeText(MainActivity.this, "City " + weatherInfo.getCity() + " has been added", Toast.LENGTH_SHORT).show();
+                        SaveList(this);
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Favorite list contains this city",Toast.LENGTH_SHORT).show();
+
                 }
-                else
-                    Toast.makeText(MainActivity.this,"Miasto jest już dodane do listy ulubionych",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.refreshWeatherItem:
                 if(isNetworkAvailable()){
@@ -101,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
                     Refresh();
                 }
                 else{
-                    Toast.makeText(MainActivity.this,"Brak dostępu do sieci",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"No internet connection",Toast.LENGTH_SHORT).show();
                 }
-
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -116,18 +121,20 @@ public class MainActivity extends AppCompatActivity {
             if(checkDate() && isNetworkAvailable()){
                 retrofit = SearchCity.getRetrofit(retrofit);
                 Refresh();
-                Toast.makeText(context,"Zaktualizowano przestarzałe dane",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Old data has been refreshed",Toast.LENGTH_SHORT).show();
+                init_update = true;
             }
             else{
                 InitFragments();
-                Toast.makeText(context,"Wczytano pliki z danymi",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Data file loaded",Toast.LENGTH_SHORT).show();
                 if(!isNetworkAvailable()){
                     alertView = findViewById(R.id.alertView);
-                    alertView.setText("Błąd połączenia z internetem");
+                    alertView.setText("No internet connection");
                 }
+                init_update = true;
             }
         }catch(Exception e){
-            Toast.makeText(context,"Nie udało się odnaleźć pliku z danymi",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"No data file",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -140,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             fis.close();
             return weatherInfo;
         }catch(Exception e){
-            Toast.makeText(context,"Nie udało się odnaleźć pliku z danymi",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"No data file",Toast.LENGTH_SHORT).show();
             return null;
         }
     }
@@ -153,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             is.close();
             fis.close();
         }catch(Exception e){
-            Toast.makeText(context,"Nie udało się odnaleźć pliku z danymi",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"No data file",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -163,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         boolean returnValue =  activeNetworkInfo != null && activeNetworkInfo.isConnected();
         alertView = findViewById(R.id.alertView);
         if(!returnValue)
-            alertView.setText("Brak połączenia z internetem");
+            alertView.setText("No internet connection");
         else
             alertView.setText("");
         return returnValue;
@@ -239,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<WeatherResponse> call, Throwable t) {
-                    Toast.makeText(MainActivity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Downloading data error",Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -258,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ForecastRepsonse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Downloading data error",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -270,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
             os.writeObject(weatherInfo);
             os.close();
         }catch (Exception e){
-            Toast.makeText(context,"Błąd zapisu pliku",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Data saving error",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -281,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
             os.writeObject(SearchCity.listOfCities);
             os.close();
         }catch(Exception e){
-            Toast.makeText(context,"Błąd zapisu pliku",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Data saving error",Toast.LENGTH_SHORT).show();
         }
     }
 }

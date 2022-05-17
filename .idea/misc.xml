@@ -5,12 +5,20 @@
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.23125" />
         <entry key="../../../../../layout/custom_preview.xml" value="0.1685185185185185" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_search_city.xml" value="1.1176809254161446" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/activity_search_city.xml" value="0.21972602739726027" />
+        <entry key="app/src/main/res/layout-sw600dp/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-sw600dp/activity_search_city.xml" value="0.10120220297187038" />
+        <entry key="app/src/main/res/layout-sw600dp/fragment_additional_info_layout.xml" value="0.12578125" />
+        <entry key="app/src/main/res/layout-sw600dp/fragment_today_forecast_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-sw600dp/layout_favlistitem.xml" value="0.12082977294921876" />
+        <entry key="app/src/main/res/layout-sw600dp/layout_listitem.xml" value="0.12578125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_search_city.xml" value="0.2793609619140625" />
         <entry key="app/src/main/res/layout/fragment_additional_info_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_future_forecast_layout.xml" value="0.20969202898550723" />
         <entry key="app/src/main/res/layout/fragment_today_forecast_layout.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/layout_favlistitem.xml" value="0.16335540838852097" />
+        <entry key="app/src/main/res/layout/layout_favlistitem.xml" value="0.34541062801932365" />
         <entry key="app/src/main/res/layout/layout_listitem.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_layout.xml" value="0.22916666666666666" />
       </map>

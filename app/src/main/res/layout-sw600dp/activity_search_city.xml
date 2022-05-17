@@ -29,7 +29,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInput"
-        android:layout_width="250dp"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/GLH01"
         app:layout_constraintEnd_toStartOf="@+id/GLV065"
@@ -44,8 +44,8 @@
 
     <Button
         android:id="@+id/searchButton"
-        android:layout_width="125dp"
-        android:layout_height="60dp"
+        android:layout_width="200dp"
+        android:layout_height="90dp"
         android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/GLH01"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,10 +54,10 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="384dp"
-        android:layout_height="20dp"
+        android:layout_width="740dp"
+        android:layout_height="40dp"
         android:text="Temperature Units"
-        android:textSize="16sp"
+        android:textSize="35sp"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -69,8 +69,8 @@
         android:id="@+id/temperatureSwitch"
         android:layout_width="58dp"
         android:layout_height="41dp"
-        android:scaleX="1.3"
-        android:scaleY="1.3"
+        android:scaleX="3"
+        android:scaleY="3"
         app:layout_constraintBottom_toTopOf="@+id/GLH02"
         app:layout_constraintEnd_toStartOf="@+id/GLV065"
         app:layout_constraintHorizontal_bias="0.889"
@@ -80,36 +80,39 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
         android:text="°F"
         android:textColor="@color/black"
+        android:textSize="30sp"
+
         app:layout_constraintBottom_toTopOf="@+id/GLH02"
-        app:layout_constraintEnd_toStartOf="@+id/GLV065"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/temperatureSwitch"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.71" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="23dp"
-        android:layout_height="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="°C"
         android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/GLH02"
         app:layout_constraintEnd_toStartOf="@+id/temperatureSwitch"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.515" />
+        app:layout_constraintVertical_bias="0.71" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="384dp"
-        android:layout_height="20dp"
+        android:layout_width="740dp"
+        android:layout_height="40dp"
         android:text="Favorite Cities "
         android:textAlignment="textStart"
-        android:textSize="16sp"
+        android:textSize="35sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

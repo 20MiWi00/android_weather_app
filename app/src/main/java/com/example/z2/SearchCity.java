@@ -48,7 +48,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
     private double lon;
     private double lat;
     public static WeatherInfo weatherInfo = new WeatherInfo();
-
+    private TextInputLayout textInputLayout;
 
 
     private Button searchButton;
@@ -74,7 +74,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextInputLayout textInputLayout = findViewById(R.id.textInput);
+                textInputLayout = findViewById(R.id.textInput);
                 city = textInputLayout.getEditText().getText().toString().trim();
                 if(isNetworkAvailable() && city.length() > 0){
                     retrofit = getRetrofit(retrofit);
@@ -82,9 +82,9 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
                 }
                 else{
                     if(!isNetworkAvailable())
-                        Toast.makeText(SearchCity.this,"Brak połączenia z internetem",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchCity.this,"No internet connection",Toast.LENGTH_SHORT).show();
                     if(city.length() == 0)
-                        Toast.makeText(SearchCity.this,"Nie podano miasta",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchCity.this,"Enter a city first",Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -111,7 +111,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
             @Override
             public void onResponse(Call<List<ResponseItem>> call, Response<List<ResponseItem>> response) {
                 if(response.body().size() == 0){
-                    Toast.makeText(SearchCity.this,"Podano błędne miasto",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchCity.this,"Wrong city",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 lon = response.body().get(0).getLon();
@@ -125,7 +125,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
 
             @Override
             public void onFailure(Call<List<ResponseItem>> call, Throwable t) {
-                Toast.makeText(SearchCity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchCity.this,"Downloading data error",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -152,7 +152,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
 
                 @Override
                 public void onFailure(Call<WeatherResponse> call, Throwable t) {
-                    Toast.makeText(SearchCity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchCity.this,"Downloading data error",Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -176,7 +176,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
 
             @Override
             public void onFailure(Call<ForecastRepsonse> call, Throwable t) {
-                Toast.makeText(SearchCity.this,"Błąd pobierania danych",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchCity.this,"Downloading data error",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -210,7 +210,7 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
             os.writeObject(weatherInfo);
             os.close();
         }catch (Exception e){
-            Toast.makeText(context,"Błąd zapisu pliku",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Saving data error",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -223,8 +223,8 @@ public class SearchCity extends AppCompatActivity implements OnImageClickListene
 
     @Override
     public void onImageClick(String city) {
-        TextInputLayout inputLayout = findViewById(R.id.textInput);
-        inputLayout.getEditText().setText(city);
+        textInputLayout = findViewById(R.id.textInput);
+        textInputLayout.getEditText().setText(city);
+        this.city = city;
     }
-
 }
